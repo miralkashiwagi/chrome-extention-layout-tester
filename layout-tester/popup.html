@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout Tester</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div id="settings">
+      <h1>Layout Tester</h1>
+      <section>
+        <h2>画像変更</h2>
+        <fieldset>
+          <legend>対象範囲:</legend>
+          <label>
+            <input type="radio" name="image-scope" value="main" checked />
+            main内
+          </label>
+          <label>
+            <input type="radio" name="image-scope" value="body" /> body内
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>この画像に置き換え:</legend>
+          <label>
+            <input
+              type="radio"
+              name="image-url"
+              value="https://placehold.jp/150x150.png"
+              checked
+            />
+            150x150
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="image-url"
+              value="https://placehold.jp/1500x1500.png"
+            />
+            1500x1500
+          </label>
+          <label>
+            <input type="radio" name="image-url" value="custom" /> カスタム
+          </label>
+
+          <input
+            type="text"
+            id="custom-image-url"
+            placeholder="カスタムURL"
+            disabled
+          />
+        </fieldset>
+      </section>
+      <section>
+        <h2>テキスト変更</h2>
+        <fieldset>
+          <legend>対象範囲:</legend>
+          <label>
+            <input type="radio" name="text-scope" value="main" checked /> main内
+          </label>
+          <label>
+            <input type="radio" name="text-scope" value="body" /> body内
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>テキスト長を以下に変更:</legend>
+          <label>
+            <input type="radio" name="text-ratio" value="200" checked /> 200%
+          </label>
+          <label>
+            <input type="radio" name="text-ratio" value="50" /> 50%
+          </label>
+        </fieldset>
+        <label>
+          <input type="checkbox" id="ignore-alnum" checked />
+          アルファベット/数字を無視
+        </label>
+      </section>
+      <button id="execute">置換実行</button>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
