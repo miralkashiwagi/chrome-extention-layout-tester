@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const customImageUrl = document.getElementById("custom-image-url");
   const executeButton = document.getElementById("execute");
+  const enableImage = document.getElementById("enable-image");
+  const enableText = document.getElementById("enable-text");
 
   // カスタムURL入力欄の有効化/無効化
   document.querySelectorAll("input[name='image-url']").forEach((radio) => {
@@ -11,23 +13,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 実行ボタンの処理
   executeButton.addEventListener("click", () => {
-    const imageScope = document.querySelector(
-      "input[name='image-scope']:checked"
-    ).value;
-    const imageUrl = document.querySelector(
-      "input[name='image-url']:checked"
-    ).value;
-    const textScope = document.querySelector(
-      "input[name='text-scope']:checked"
-    ).value;
-    const textRatio = Number(
-      document.querySelector("input[name='text-ratio']:checked").value
-    );
-    const ignoreAlnum = document.getElementById("ignore-alnum").checked;
+    const imageEnabled = enableImage.checked;
+    const textEnabled = enableText.checked;
+
+    const imageScope = imageEnabled
+      ? document.querySelector("input[name='image-scope']:checked").value
+      : null;
+    const imageUrl = imageEnabled
+      ? document.querySelector("input[name='image-url']:checked").value
+      : null;
+
+    const textScope = textEnabled
+      ? document.querySelector("input[name='text-scope']:checked").value
+      : null;
+    const textRatio = textEnabled
+      ? Number(document.querySelector("input[name='text-ratio']:checked").value)
+      : null;
+    const ignoreAlnum = textEnabled
+      ? document.getElementById("ignore-alnum").checked
+      : null;
 
     const message = {
+      imageEnabled,
       imageScope,
       imageUrl: imageUrl === "custom" ? customImageUrl.value : imageUrl,
+      textEnabled,
       textScope,
       textRatio,
       ignoreAlnum,
@@ -35,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       if (tabs.length > 0) {
-        // content.js を動的に注入
         chrome.scripting.executeScript(
           {
             target: { tabId: tabs[0].id },
@@ -43,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
           },
           () => {
             console.log("Content script injected.");
-            // メッセージを送信
             chrome.tabs.sendMessage(tabs[0].id, message, (response) => {
               if (chrome.runtime.lastError) {
                 console.error("Error:", chrome.runtime.lastError.message);

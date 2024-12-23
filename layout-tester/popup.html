@@ -10,7 +10,13 @@
     <div id="settings">
       <h1>Layout Tester</h1>
       <section>
-        <h2>画像変更</h2>
+        <h2>
+          画像変更
+          <label>
+            <input type="checkbox" id="enable-image" checked />
+            有効
+          </label>
+        </h2>
         <fieldset>
           <legend>対象範囲:</legend>
           <label>
@@ -43,7 +49,6 @@
           <label>
             <input type="radio" name="image-url" value="custom" /> カスタム
           </label>
-
           <input
             type="text"
             id="custom-image-url"
@@ -53,7 +58,13 @@
         </fieldset>
       </section>
       <section>
-        <h2>テキスト変更</h2>
+        <h2>
+          テキスト変更
+          <label>
+            <input type="checkbox" id="enable-text" checked />
+            有効
+          </label>
+        </h2>
         <fieldset>
           <legend>対象範囲:</legend>
           <label>
@@ -64,7 +75,9 @@
           </label>
         </fieldset>
         <fieldset>
-          <legend>テキスト長を以下に変更:</legend>
+          <legend>
+            テキスト長を以下に変更<small>（元の長さに対して）</small>:
+          </legend>
           <label>
             <input type="radio" name="text-ratio" value="200" checked /> 200%
           </label>
