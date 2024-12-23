@@ -104,3 +104,41 @@ button:hover {
   background-color: #f0f0f0;
   cursor: not-allowed;
 }
+
+#custom-size-inputs {
+  display: none;
+  /*display: flex;*/
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#custom-size-inputs input {
+  width: calc(50% - 5px);
+  padding: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+#custom-size-inputs input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+#custom-text-inputs {
+  margin-top: 10px;
+  display: none;
+}
+
+#custom-text-inputs input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+#custom-text-inputs input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}

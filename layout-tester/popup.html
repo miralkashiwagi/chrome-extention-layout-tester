@@ -28,7 +28,7 @@
           </label>
         </fieldset>
         <fieldset>
-          <legend>この画像に置き換え:</legend>
+          <legend>この画像サイズに置き換え:</legend>
           <label>
             <input
               type="radio"
@@ -47,14 +47,23 @@
             1500x1500
           </label>
           <label>
-            <input type="radio" name="image-url" value="custom" /> カスタム
+            <input type="radio" name="image-url" value="custom" />
+            カスタムサイズ
           </label>
-          <input
-            type="text"
-            id="custom-image-url"
-            placeholder="カスタムURL"
-            disabled
-          />
+          <div id="custom-size-inputs">
+            <input
+              type="number"
+              id="custom-width"
+              placeholder="幅 (W)"
+              min="1"
+            />
+            <input
+              type="number"
+              id="custom-height"
+              placeholder="高さ (H)"
+              min="1"
+            />
+          </div>
         </fieldset>
       </section>
       <section>
@@ -84,6 +93,17 @@
           <label>
             <input type="radio" name="text-ratio" value="50" /> 50%
           </label>
+          <label>
+            <input type="radio" name="text-ratio" value="custom" /> カスタム
+          </label>
+          <div id="custom-text-inputs">
+            <input
+              type="number"
+              id="custom-text-ratio"
+              placeholder="長さ (%)"
+              min="1"
+            />
+          </div>
         </fieldset>
         <label>
           <input type="checkbox" id="ignore-alnum" checked />
