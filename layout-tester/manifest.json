@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Layout Tester - Image & Text Checker",
-  "version": "1.1",
+  "version": "1.12",
   "description": "Check your web layouts by replacing images and resizing text. Ensure your design stays robust during content changes.",
   "permissions": ["activeTab", "scripting"],
   "action": {
