@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             }
             if (
               message.ignoreAlnum &&
-              /^[a-zA-Z0-9.\s]+$/.test(node.nodeValue)
+              /^[a-zA-Z0-9._\s]+$/.test(node.nodeValue)
             ) {
               return NodeFilter.FILTER_SKIP;
             }
