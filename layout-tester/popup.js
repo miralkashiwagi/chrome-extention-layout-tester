@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const width = customWidth.value || "150";
         const height = customHeight.value || "150";
         imageUrl = `https://placehold.jp/${width}x${height}.png`;
+      } else if (selectedImageOption === "random") {
+        imageUrl = "random";
       } else {
         imageUrl = selectedImageOption;
       }
@@ -55,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ).value;
       if (selectedTextOption === "custom") {
         textRatio = Number(customTextRatio.value) || 200; // 入力が空の場合、200%をデフォルト値に
+      } else if (selectedTextOption === "random") {
+        textRatio = "random";
       } else {
         textRatio = Number(selectedTextOption);
       }

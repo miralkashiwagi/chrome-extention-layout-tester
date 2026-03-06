@@ -3,7 +3,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.imageEnabled) {
       document.querySelectorAll(`${message.imageScope} img`).forEach((img) => {
         if (!img.closest("iframe")) {
-          img.src = message.imageUrl;
+          if (message.imageUrl === "random") {
+            const width = Math.floor(Math.random() * (1500 - 150 + 1)) + 150;
+            const height = Math.floor(Math.random() * (1500 - 150 + 1)) + 150;
+            img.src = `https://placehold.jp/${width}x${height}.png`;
+          } else {
+            img.src = message.imageUrl;
+          }
         }
       });
     }
@@ -46,20 +52,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       textNodes.forEach((node) => {
-        // 初期値を保持するためのカスタム属性を追加
-        if (!node.dataset || !node.dataset.originalValue) {
-          node.dataset = { originalValue: node.nodeValue };
+        // 初期値を保持
+        if (!node._originalValue) {
+          node._originalValue = node.nodeValue;
         }
 
         // 元の値を基準に計算
-        const originalValue = node.dataset.originalValue.trim();
-        const newLength = Math.ceil(
-          originalValue.length * (message.textRatio / 100)
-        );
+        const originalValue = node._originalValue.trim();
+        const ratio =
+          message.textRatio === "random"
+            ? Math.floor(Math.random() * (300 - 10 + 1)) + 10
+            : message.textRatio;
+        const newLength = Math.ceil(originalValue.length * (ratio / 100));
 
         if (newLength === 0) {
           node.nodeValue = originalValue[0] || "";
-        } else if (message.textRatio === 50) {
+        } else if (ratio === 50) {
           node.nodeValue = originalValue.slice(0, newLength);
         } else {
           node.nodeValue = originalValue
